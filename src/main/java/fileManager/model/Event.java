@@ -38,4 +38,13 @@ public class Event {
     public void setOperation(Operation operation) {
         this.operation = operation;
     }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "id=" + id +
+                ", file=" + file.getName() +
+                ", operation=" + operation +
+                '}';
+    }
 }

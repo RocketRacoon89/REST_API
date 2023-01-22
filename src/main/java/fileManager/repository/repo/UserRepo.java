@@ -1,6 +1,8 @@
 package fileManager.repository.repo;
 
 import fileManager.model.Event;
+import fileManager.model.File;
+import fileManager.model.Operation;
 import fileManager.model.User;
 import fileManager.repository.entity.EventEntity;
 import fileManager.repository.entity.UserEntity;
@@ -71,6 +73,20 @@ public class UserRepo {
             UserEntity userEntity = session.get(UserEntity.class, id);
             user.setId(userEntity.getId());
             user.setName(userEntity.getName());
+            List<Event> events = new ArrayList<>();
+            for(EventEntity ee:userEntity.getEventEntities()) {
+                Event event = new Event();
+                event.setId(ee.getId());
+                event.setUser(user);
+                File file = new File();
+                file.setId(ee.getFile().getId());
+                file.setName(ee.getFile().getName());
+                file.setFilePath(ee.getFile().getFilePath());
+                event.setFile(file);
+                event.setOperation(Operation.valueOf(ee.getOperation()));
+                events.add(event);
+            }
+            user.setEvents(events);
             session.getTransaction().commit();
         } finally {
             sessionFactory.close();
