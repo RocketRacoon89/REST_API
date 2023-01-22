@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url">jdbc:mysql://localhost:3306/rest_api</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.username">Mike</property>
+        <property name="connection.password">5436</property>
+
+        <property name="current_session_context_class">thread</property>
+        <property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
+        <property name="show_sql">true</property>
+        <property name="format_sql">true</property> <!-- Show SQL formatted -->
+
+        <!-- mapping class using annotation -->
+        <mapping class="fileManager.repository.entity.UserEntity"></mapping>
+        <mapping class="fileManager.repository.entity.FileEntity"></mapping>
+        <mapping class="fileManager.repository.entity.EventEntity"></mapping>
+
+    </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,38 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+<!-->add_test</!-->
+  <servlet>
+    <servlet-name>MainPage</servlet-name>
+    <servlet-class>servlet1.MainPage</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>MainPage</servlet-name>
+    <url-pattern>/MainPage</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>index</servlet-name>
+    <servlet-class>index.jsp</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>index</servlet-name>
+    <url-pattern>/index</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>UserPostPage</servlet-name>
+    <servlet-class>servlet1.UserPostPage</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>UserPostPage</servlet-name>
+    <url-pattern>/UserPostPage</url-pattern>
+  </servlet-mapping>
+
+</web-app>
