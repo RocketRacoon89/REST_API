@@ -1,5 +1,8 @@
 package servlet1;
 
+import fileManager.model.User;
+import fileManager.repository.repo.UserRepo;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +28,7 @@ public class MainPage extends HttpServlet {
 
         String title = "File Manager";
         PrintWriter writer = response.getWriter();
+        String docType = "<!DOCTYPE html>";
 
         PrintWriter messageWriter = response.getWriter();
         messageWriter.println("<h1>" + message + "<h1>");
@@ -32,9 +36,21 @@ public class MainPage extends HttpServlet {
         writer.println("<html>" +
                 "<head><title>" + title + "</title></head>\n" +
                 "<body>" +
-                "<h2>Name: </h2>" + request.getParameter("name") +
+                "<h2>User Name: </h2>" + request.getParameter("name") +
                 "</body>" +
                 "</html>");
+        System.out.println(request.getParameter("name"));
+
+    }
+
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String name = request.getParameter("name");
+        User user = new User();
+        user.setName(name);
+        UserRepo userRepo = new UserRepo();
+        userRepo.createUser(user);
+
+        doGet(request, response);
     }
 
     public void destroy() {

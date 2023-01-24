@@ -5,6 +5,7 @@ import fileManager.model.File;
 import fileManager.model.Operation;
 import fileManager.model.User;
 import fileManager.repository.entity.EventEntity;
+import fileManager.repository.entity.FileEntity;
 import fileManager.repository.entity.UserEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -95,30 +96,44 @@ public class UserRepo {
         return user;
     }
 
-//    public List<User> getAllUsers() {
-//        List<User> userList = new ArrayList<>();
-//        sessionFactory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(UserEntity.class).buildSessionFactory();
-//        session = sessionFactory.getCurrentSession();
-//
-//        try {
-//            session.beginTransaction();
-//            List<UserEntity> userEntityList = session.createQuery("from users").getResultList();
-//
-//            for(UserEntity ue : userEntityList) {
-//                User user = new User();
-//                user.setId(ue.getId());
-//                user.setName(ue.getName());
-//                List<Event> events = new ArrayList<>();
-//                for(EventEntity ee : ue.getEventEntities()) {
-//                    Event event = new Event();
-//                    event.setId(ee.getId());
-//                    event.setUser(user);
-//                    event.setFile();
-//                    event.setOperation();
-//                    events.add(event);
-//                }
-//
-//            }
-//        }
-//    }
+    public List<User> getAllUsers() {
+        List<User> userList = new ArrayList<>();
+        sessionFactory = new Configuration().configure("hibernate.cfg.xml")
+                .addAnnotatedClass(UserEntity.class)
+                .addAnnotatedClass(FileEntity.class)
+                .addAnnotatedClass(EventEntity.class)
+                .buildSessionFactory();
+        session = sessionFactory.getCurrentSession();
+
+        try {
+            session.beginTransaction();
+            List<UserEntity> userEntityList = session.createQuery("from UserEntity").getResultList();
+
+            for(UserEntity ue : userEntityList) {
+                User user = new User();
+                user.setId(ue.getId());
+                user.setName(ue.getName());
+                List<Event> events = new ArrayList<>();
+                for(EventEntity ee : ue.getEventEntities()) {
+                    Event event = new Event();
+                    event.setId(ee.getId());
+                    event.setUser(user);
+                    File file = new File();
+                    file.setId(ee.getFile().getId());
+                    file.setName(ee.getFile().getName());
+                    file.setFilePath(ee.getFile().getFilePath());
+                    event.setFile(file);
+                    event.setOperation(Operation.valueOf(ee.getOperation()));
+                    events.add(event);
+                }
+                user.setEvents(events);
+                userList.add(user);
+            }
+            session.getTransaction().commit();
+        } finally {
+            sessionFactory.close();
+            session.close();
+        }
+        return userList;
+    }
 }

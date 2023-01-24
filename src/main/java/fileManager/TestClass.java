@@ -24,9 +24,19 @@ public class TestClass {
 //
 //        try {
 //            session.beginTransaction();
-//            FileEntity user = session.get(FileEntity.class, 1);
-//            System.out.println(user);
-//            session.delete(user);
+//            FileEntity fileEntity = session.get(FileEntity.class, 2);
+//            fileEntity.setName("config8");
+//            fileEntity.setFilePath("C");
+//
+//            UserEntity user = session.get(UserEntity.class, 12);
+//            user.setName("Vasya");
+//
+//            EventEntity event = new EventEntity();
+//            event.setOperation(Operation.UPDATE.toString());
+//            event.setUser(user);
+//            event.setFile(fileEntity);
+//
+//            session.save(event);
 //            session.getTransaction().commit();
 //        } finally {
 //            sessionFactory.close();
@@ -35,6 +45,6 @@ public class TestClass {
 
         UserRepo userRepo = new UserRepo();
 
-        System.out.println(userRepo.getByIdUser(7));
+        System.out.println(userRepo.getAllUsers());
     }
 }
