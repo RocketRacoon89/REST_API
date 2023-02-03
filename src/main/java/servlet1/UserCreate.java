@@ -1,5 +1,7 @@
 package servlet1;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import fileManager.model.User;
 import fileManager.repository.repo.UserRepo;
 
@@ -7,15 +9,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 
-/**
- * Simple class that extends {@link HttpServlet}.
- *
- * @author Eugene Suleimanov
- */
-public class MainPage extends HttpServlet {
+public class UserCreate extends HttpServlet {
+
+    private static final Gson GSON = new GsonBuilder().create();
+    private final String user_file_path = "src//main//resources//User.json";
 
     private String message;
 
@@ -24,25 +23,10 @@ public class MainPage extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html");
-
-        String title = "File Manager";
-        PrintWriter writer = response.getWriter();
-        String docType = "<!DOCTYPE html>";
-
-        PrintWriter messageWriter = response.getWriter();
-        messageWriter.println("<h1>" + message + "<h1>");
-
-        writer.println("<html>" +
-                "<head><title>" + title + "</title></head>\n" +
-                "<body>" +
-                "<h2>User Name: </h2>" + request.getParameter("name") +
-                "</body>" +
-                "</html>");
-        System.out.println(request.getParameter("name"));
 
     }
 
+    @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
         User user = new User();
@@ -50,7 +34,17 @@ public class MainPage extends HttpServlet {
         UserRepo userRepo = new UserRepo();
         userRepo.createUser(user);
 
-        doGet(request, response);
+
+        FileReader reader = new FileReader(user_file_path);
+        FileWriter writer = new FileWriter(user_file_path);
+        GSON.newBuilder().setPrettyPrinting().create();
+        GSON.toJson(user, writer);
+
+        User user1 = GSON.fromJson(reader, User.class);
+        response.setStatus(201);
+        response.setHeader("Content-Type", "application/json");
+        response.getOutputStream().println(GSON.toJson(user1));
+
     }
 
     public void destroy() {

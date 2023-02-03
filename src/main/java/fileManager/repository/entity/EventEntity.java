@@ -13,14 +13,12 @@ public class EventEntity {
     @Column(name = "id")
     private int id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private UserEntity user;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private FileEntity file;
 
-    @Column(name = "operation")
-    private String operation;
 
     public int getId() {
         return id;
@@ -46,20 +44,11 @@ public class EventEntity {
         this.file = file;
     }
 
-    public String getOperation() {
-        return operation;
-    }
-
-    public void setOperation(String operation) {
-        this.operation = operation;
-    }
-
     @Override
     public String toString() {
         return "EventEntity{" +
                 "id=" + id +
                 ", file=" + file +
-                ", operation='" + operation + '\'' +
                 '}';
     }
 }

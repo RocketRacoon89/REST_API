@@ -5,7 +5,6 @@ public class Event {
     int id;
     User user;
     File file;
-    Operation operation;
 
     public int getId() {
         return id;
@@ -31,20 +30,11 @@ public class Event {
         this.file = file;
     }
 
-    public Operation getOperation() {
-        return operation;
-    }
-
-    public void setOperation(Operation operation) {
-        this.operation = operation;
-    }
-
     @Override
     public String toString() {
         return "Event{" +
                 "id=" + id +
-                ", file=" + file.getName() +
-                ", operation=" + operation +
+                ", file=" + file +
                 '}';
     }
 }

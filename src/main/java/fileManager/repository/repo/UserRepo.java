@@ -79,12 +79,12 @@ public class UserRepo {
                 Event event = new Event();
                 event.setId(ee.getId());
                 event.setUser(user);
+
                 File file = new File();
                 file.setId(ee.getFile().getId());
                 file.setName(ee.getFile().getName());
                 file.setFilePath(ee.getFile().getFilePath());
                 event.setFile(file);
-                event.setOperation(Operation.valueOf(ee.getOperation()));
                 events.add(event);
             }
             user.setEvents(events);
@@ -123,7 +123,6 @@ public class UserRepo {
                     file.setName(ee.getFile().getName());
                     file.setFilePath(ee.getFile().getFilePath());
                     event.setFile(file);
-                    event.setOperation(Operation.valueOf(ee.getOperation()));
                     events.add(event);
                 }
                 user.setEvents(events);
