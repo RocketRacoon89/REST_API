@@ -1,1 +1,1 @@
-[{"id":1,"name":"Ivan"},{"id":2,"name":"Oleg"},{"id":3,"name":"Vasya"}]
+[{"id":11,"name":"Ivan","events":[{"id":5,"user":{"id":11,"name":"Ivan"},"file":{"id":6,"name":"config1","filePath":"C"}}]}]

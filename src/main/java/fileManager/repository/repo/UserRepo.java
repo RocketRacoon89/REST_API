@@ -2,7 +2,6 @@ package fileManager.repository.repo;
 
 import fileManager.model.Event;
 import fileManager.model.File;
-import fileManager.model.Operation;
 import fileManager.model.User;
 import fileManager.repository.entity.EventEntity;
 import fileManager.repository.entity.FileEntity;
@@ -78,7 +77,13 @@ public class UserRepo {
             for(EventEntity ee:userEntity.getEventEntities()) {
                 Event event = new Event();
                 event.setId(ee.getId());
-                event.setUser(user);
+//                event.setUser(user);
+//                test solution StackOverflowError
+                User userEn = new User();
+                userEn.setId(id);
+                userEn.setName(user.getName());
+                event.setUser(userEn);
+
 
                 File file = new File();
                 file.setId(ee.getFile().getId());
@@ -117,7 +122,15 @@ public class UserRepo {
                 for(EventEntity ee : ue.getEventEntities()) {
                     Event event = new Event();
                     event.setId(ee.getId());
-                    event.setUser(user);
+//                    event.setUser(user);
+//                    test solution StackOverflowError
+                    User userEn = new User();
+                    userEn.setId(user.getId());
+                    userEn.setName(user.getName());
+                    event.setUser(userEn);
+
+
+
                     File file = new File();
                     file.setId(ee.getFile().getId());
                     file.setName(ee.getFile().getName());

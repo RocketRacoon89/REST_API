@@ -2,6 +2,9 @@ package fileManager;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import fileManager.controller.EventController;
+import fileManager.controller.FileController;
+import fileManager.controller.UserController;
 import fileManager.model.Event;
 import fileManager.model.Operation;
 import fileManager.model.User;
@@ -69,6 +72,14 @@ public class TestClass {
 //
 //
 //
+
+
+//        UserController userController = new UserController();
+//
+//        List<User> users = new ArrayList<>();
+//        User user = userController.getByIdUser(11);
+//        users.add(user);
+//
 //        String user_file_path = "src//main//resources//User.json";
 //        File file = new File(user_file_path);
 //        Gson gson = new GsonBuilder().create();
@@ -84,6 +95,17 @@ public class TestClass {
 
 
 
+//        24
+//        UserController userController = new UserController();
+//        System.out.println(userController.createUser("Test4"));
+
+//        8
+//        FileController fileController = new FileController();
+//        System.out.println(fileController.createFile("FileTest4", "PathTest4"));
+
+//        8
+//        EventController eventController = new EventController();
+//        System.out.println(eventController.createEvent(24, 8));
 
 
     }
