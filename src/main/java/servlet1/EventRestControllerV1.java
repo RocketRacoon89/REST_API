@@ -3,25 +3,18 @@ package servlet1;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import fileManager.controller.EventController;
-import fileManager.controller.FileController;
-import fileManager.controller.UserController;
 import fileManager.model.Event;
-import fileManager.model.File;
-import fileManager.model.User;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class EventRestControllerV1 extends HttpServlet {
 
     private static final Gson GSON = new GsonBuilder().create();
-    private final String user_file_path = "src//main//resources//User.json";
 
     private String message;
 

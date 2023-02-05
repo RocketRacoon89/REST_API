@@ -15,7 +15,6 @@ import java.util.List;
 public class UserRestControllerV1 extends HttpServlet {
 
     private static final Gson GSON = new GsonBuilder().create();
-    private final String user_file_path = "src//main//resources//User.json";
 
     private String message;
 
