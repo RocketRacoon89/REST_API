@@ -6,13 +6,13 @@
   <display-name>Archetype Created Web Application</display-name>
 <!-->add_test</!-->
   <servlet>
-    <servlet-name>UserCreate</servlet-name>
-    <servlet-class>servlet1.UserCreate</servlet-class>
+    <servlet-name>UserRestControllerV1</servlet-name>
+    <servlet-class>servlet1.UserRestControllerV1</servlet-class>
   </servlet>
 
   <servlet-mapping>
-    <servlet-name>UserCreate</servlet-name>
-    <url-pattern>/User/Create</url-pattern>
+    <servlet-name>UserRestControllerV1</servlet-name>
+    <url-pattern>/User</url-pattern>
   </servlet-mapping>
 
   <servlet>
