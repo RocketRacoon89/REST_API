@@ -26,13 +26,23 @@
   </servlet-mapping>
 
   <servlet>
-    <servlet-name>UserPostPage</servlet-name>
-    <servlet-class>servlet1.UserPostPage</servlet-class>
+    <servlet-name>EventRestControllerV1</servlet-name>
+    <servlet-class>servlet1.EventRestControllerV1</servlet-class>
   </servlet>
 
   <servlet-mapping>
-    <servlet-name>UserPostPage</servlet-name>
-    <url-pattern>/UserPostPage</url-pattern>
+    <servlet-name>EventRestControllerV1</servlet-name>
+    <url-pattern>/Event</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>FileRestControllerV1</servlet-name>
+    <servlet-class>servlet1.FileRestControllerV1</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>FileRestControllerV1</servlet-name>
+    <url-pattern>/File</url-pattern>
   </servlet-mapping>
 
 </web-app>
