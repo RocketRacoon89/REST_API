@@ -8,32 +8,32 @@
 <!-->add_test</!-->
   <servlet>
     <servlet-name>UserRestControllerV1</servlet-name>
-    <servlet-class>servlet1.UserRestControllerV1</servlet-class>
+    <servlet-class>servlet1.v1.UserRestControllerV1</servlet-class>
   </servlet>
 
   <servlet-mapping>
     <servlet-name>UserRestControllerV1</servlet-name>
-    <url-pattern>/User</url-pattern>
+    <url-pattern>/api/v1/user/*</url-pattern>
   </servlet-mapping>
 
   <servlet>
     <servlet-name>EventRestControllerV1</servlet-name>
-    <servlet-class>servlet1.EventRestControllerV1</servlet-class>
+    <servlet-class>servlet1.v1.EventRestControllerV1</servlet-class>
   </servlet>
 
   <servlet-mapping>
     <servlet-name>EventRestControllerV1</servlet-name>
-    <url-pattern>/Event</url-pattern>
+    <url-pattern>/api/v1/event/*</url-pattern>
   </servlet-mapping>
 
   <servlet>
     <servlet-name>FileRestControllerV1</servlet-name>
-    <servlet-class>servlet1.FileRestControllerV1</servlet-class>
+    <servlet-class>servlet1.v1.FileRestControllerV1</servlet-class>
   </servlet>
 
   <servlet-mapping>
     <servlet-name>FileRestControllerV1</servlet-name>
-    <url-pattern>/File</url-pattern>
+    <url-pattern>/api/v1/file/*</url-pattern>
   </servlet-mapping>
 
 </web-app>

@@ -1,35 +1,19 @@
 package fileManager;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import fileManager.controller.EventController;
-import fileManager.controller.FileController;
-import fileManager.controller.UserController;
-import fileManager.model.Event;
-import fileManager.model.Operation;
-import fileManager.model.User;
-import fileManager.repository.entity.EventEntity;
-import fileManager.repository.entity.FileEntity;
-import fileManager.repository.entity.UserEntity;
-import fileManager.repository.repo.UserRepo;
-import fileManager.services.EventService;
-import fileManager.services.UserService;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+import com.google.gson.reflect.TypeToken;
+import fileManager.model.File;
+import net.bytebuddy.description.method.MethodDescription;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletInputStream;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.io.*;
-import java.security.Principal;
-import java.util.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
 
 
 public class TestClass {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 //        SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
 //                .addAnnotatedClass(FileEntity.class)
 //                .addAnnotatedClass(UserEntity.class)
@@ -107,6 +91,62 @@ public class TestClass {
 //        EventController eventController = new EventController();
 //        System.out.println(eventController.createEvent(24, 8));
 
+//        String strId1 = "/File/1";
+////        Long id = Long.parseLong(strId1.substring("/File/".length()));
+////        Long id = Long.parseLong(strId1.substring("/File/".length()));
+//        Integer id = Integer.parseInt(strId1.substring("/File/".length()));
+//        System.out.println(id);
+
+//        File file = new File("test1.txt");
+//        System.out.println(file.getAbsolutePath());
+//        BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+//        String line = bufferedReader.readLine();
+//        while (line!=null) {
+//            System.out.println(line);
+//            line = bufferedReader.readLine();
+//        }
+
+//        String test = "----------------------------476659906322780777193563Content-Disposition: form-data; name=\"name\"config400----------------------------476659906322780777193563Content-Disposition: form-data; name=\"filePath\"Y----------------------------\n" +
+//                "476659906322780777193563--";
+////        System.out.println(test.substring(1,2));
+//        String rep = test.replace("-", " ");
+//        System.out.println("");
+//        System.out.println(rep);
+//        System.out.println("");
+//        String testName = test.substring(test.indexOf("\"name\"")+6);
+//        testName = testName.substring(0, testName.indexOf("-"));
+//        String testFilePath = test.substring(test.indexOf("\"filePath\"")+9);
+//        testFilePath = testFilePath.substring(0, testFilePath.indexOf("-"));
+//        System.out.println("TEST NAME "+testName);
+//        System.out.println("TEST FILEPATH "+testFilePath);
+
+
+//        String strId1 = "\"File\"15";
+//        strId1 = strId1.substring("/File/".length());
+//        int id = 0;
+//        if(strId1.length()>0) {
+//            id = Integer.parseInt(strId1);
+//        }
+
+//        System.out.println(id);
+
+        StringBuilder result = new StringBuilder();
+        URL url = new URL("http://localhost:8088/File/15");
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+
+        try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(conn.getInputStream()))) {
+            for (String line; (line = reader.readLine()) != null; ) {
+                result.append(line);
+            }
+        }
+        Gson gson = new Gson();
+        File file = gson.fromJson(String.valueOf(result), File.class);
+
+        System.out.println(file);
+        }
+
 
     }
-}
+
