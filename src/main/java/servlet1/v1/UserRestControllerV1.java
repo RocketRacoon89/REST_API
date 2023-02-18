@@ -55,12 +55,10 @@ public class UserRestControllerV1 extends HttpServlet {
         //парсим тело запроса
         BufferedReader toParse = request.getReader();
         String parse = toParse.readLine();
-        System.out.println("line1 "+parse);
         String req = "";
         while (parse!=null) {
             req+=String.valueOf(parse);
             parse = toParse.readLine();
-            System.out.println("line2 "+parse);
         }
 
         String name = req.substring(req.indexOf("\"name\"")+6);
@@ -80,12 +78,10 @@ public class UserRestControllerV1 extends HttpServlet {
         //парсим тело запроса
         BufferedReader toParse = request.getReader();
         String parse = toParse.readLine();
-        System.out.println("line1 "+parse);
         String req = "";
         while (parse!=null) {
             req+=String.valueOf(parse);
             parse = toParse.readLine();
-            System.out.println("line2 "+parse);
         }
 
         String strId = req.substring(req.indexOf("\"id_user\"")+9);

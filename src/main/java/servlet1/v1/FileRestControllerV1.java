@@ -58,23 +58,16 @@ public class FileRestControllerV1 extends HttpServlet {
         //парсим тело запроса
         BufferedReader toParse = request.getReader();
         String parse = toParse.readLine();
-        System.out.println("line1 "+parse);
         String req = "";
         while (parse!=null) {
             req+=String.valueOf(parse);
             parse = toParse.readLine();
-            System.out.println("line2 "+parse);
         }
-        System.out.println(req);
-        String testName = req.substring(req.indexOf("\"name\"")+6);
-        testName = testName.substring(0, testName.indexOf("-"));
-        String testFilePath = req.substring(req.indexOf("\"filePath\"")+10);
-        testFilePath = testFilePath.substring(0, testFilePath.indexOf("-"));
-        System.out.println(testName);
-        System.out.println(testFilePath);
+        String name = req.substring(req.indexOf("\"name\"")+6);
+        name = name.substring(0, name.indexOf("-"));
+        String filePath = req.substring(req.indexOf("\"filePath\"")+10);
+        filePath = filePath.substring(0, filePath.indexOf("-"));
 
-        String name = testName;
-        String filePath = testFilePath;
         FileController fileController = new FileController();
         File file = fileController.createFile(name, filePath);
 
@@ -89,12 +82,10 @@ public class FileRestControllerV1 extends HttpServlet {
         //парсим тело запроса
         BufferedReader toParse = request.getReader();
         String parse = toParse.readLine();
-        System.out.println("line1 "+parse);
         String req = "";
         while (parse!=null) {
             req+=String.valueOf(parse);
             parse = toParse.readLine();
-            System.out.println("line2 "+parse);
         }
 
         String strId = req.substring(req.indexOf("\"id_file\"")+9);
@@ -104,10 +95,6 @@ public class FileRestControllerV1 extends HttpServlet {
         name = name.substring(0, name.indexOf("-"));
         String filePath = req.substring(req.indexOf("\"filePath\"")+10);
         filePath = filePath.substring(0, filePath.indexOf("-"));
-        System.out.println(id_file);
-        System.out.println(name);
-        System.out.println(filePath);
-
 
         FileController fileController = new FileController();
         fileController.updateFile(id_file, name, filePath);

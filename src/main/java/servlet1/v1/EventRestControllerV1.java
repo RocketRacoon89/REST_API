@@ -26,17 +26,16 @@ public class EventRestControllerV1 extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String strId1 = request.getRequestURI();
         strId1 = strId1.substring("/api/v1/event/".length());
-        int id = 0;
+        int id_event = 0;
         if(strId1.length()>0) {
-            id = Integer.parseInt(strId1);
+            id_event = Integer.parseInt(strId1);
         }
 
-        String strId = request.getParameter("id_event");
         EventController eventController = new EventController();
         Event event = new Event();
         List<Event> events = new ArrayList<>();
-        if(id>0) {
-            event = eventController.getByIdEvent(id);
+        if(id_event>0) {
+            event = eventController.getByIdEvent(id_event);
         } else {
             events = eventController.getAllEvents();
         }
@@ -44,7 +43,7 @@ public class EventRestControllerV1 extends HttpServlet {
         response.setStatus(200);
         response.setHeader("Content-Type", "application/json");
 
-        if(strId!=null) {
+        if(id_event>0) {
             response.getOutputStream().println(GSON.toJson(event));
         } else {
             response.getOutputStream().println(GSON.toJson(events));
@@ -57,12 +56,10 @@ public class EventRestControllerV1 extends HttpServlet {
         //парсим тело запроса
         BufferedReader toParse = request.getReader();
         String parse = toParse.readLine();
-        System.out.println("line1 "+parse);
         String req = "";
         while (parse!=null) {
             req+=String.valueOf(parse);
             parse = toParse.readLine();
-            System.out.println("line2 "+parse);
         }
         String strIdUser = req.substring(req.indexOf("\"id_user\"")+9);
         strIdUser = strIdUser.substring(0, strIdUser.indexOf("-"));
@@ -86,15 +83,13 @@ public class EventRestControllerV1 extends HttpServlet {
         //парсим тело запроса
         BufferedReader toParse = request.getReader();
         String parse = toParse.readLine();
-        System.out.println("line1 "+parse);
         String req = "";
         while (parse!=null) {
             req+=String.valueOf(parse);
             parse = toParse.readLine();
-            System.out.println("line2 "+parse);
         }
 
-        String strIdEvent = req.substring(req.indexOf("\"id_user\"")+9);
+        String strIdEvent = req.substring(req.indexOf("\"id_event\"")+10);
         strIdEvent = strIdEvent.substring(0, strIdEvent.indexOf("-"));
         int id_event = Integer.parseInt(strIdEvent);
 
