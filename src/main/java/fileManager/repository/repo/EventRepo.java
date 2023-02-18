@@ -36,8 +36,8 @@ public class EventRepo {
             session.save(eventEntity);
             session.getTransaction().commit();
         } finally {
-            sessionFactory.close();
             session.close();
+            sessionFactory.close();
         }
         return event;
     }
@@ -59,8 +59,8 @@ public class EventRepo {
             eventEntity.setFile(fileEntity);
             session.getTransaction().commit();
         } finally {
-            sessionFactory.close();
             session.close();
+            sessionFactory.close();
         }
         return event;
     }
@@ -77,8 +77,8 @@ public class EventRepo {
             session.delete(eventEntity);
             session.getTransaction().commit();
         } finally {
-            sessionFactory.close();
             session.close();
+            sessionFactory.close();
         }
     }
 
@@ -101,8 +101,8 @@ public class EventRepo {
             event.setUser(user);
             event.setFile(file);
         } finally {
-            sessionFactory.close();
             session.close();
+            sessionFactory.close();
         }
         return event;
     }
@@ -130,8 +130,8 @@ public class EventRepo {
                 events.add(event);
             }
         } finally {
-            sessionFactory.close();
             session.close();
+            sessionFactory.close();
         }
         return events;
     }

@@ -28,8 +28,8 @@ public class UserRepo {
             session.save(userEntity);
             session.getTransaction().commit();
         } finally {
-            sessionFactory.close();
             session.close();
+            sessionFactory.close();
         }
 
         return user;
@@ -44,8 +44,8 @@ public class UserRepo {
             userEntity.setName(user.getName());
             session.getTransaction().commit();
         } finally {
-            sessionFactory.close();
             session.close();
+            sessionFactory.close();
         }
         return user;
     }
@@ -59,8 +59,8 @@ public class UserRepo {
             session.delete(userEntity);
             session.getTransaction().commit();
         } finally {
-            sessionFactory.close();
             session.close();
+            sessionFactory.close();
         }
     }
 
@@ -95,8 +95,8 @@ public class UserRepo {
             user.setEvents(events);
             session.getTransaction().commit();
         } finally {
-            sessionFactory.close();
             session.close();
+            sessionFactory.close();
         }
         return user;
     }
@@ -143,8 +143,8 @@ public class UserRepo {
             }
             session.getTransaction().commit();
         } finally {
-            sessionFactory.close();
             session.close();
+            sessionFactory.close();
         }
         return userList;
     }

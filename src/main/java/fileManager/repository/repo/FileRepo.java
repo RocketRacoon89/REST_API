@@ -25,8 +25,8 @@ public class FileRepo {
             session.save(fileEntity);
             session.getTransaction().commit();
         } finally {
-            sessionFactory.close();
             session.close();
+            sessionFactory.close();
         }
 
         return file;
@@ -43,8 +43,8 @@ public class FileRepo {
             fileEntity.setFilePath(file.getFilePath());
             session.getTransaction().commit();
         } finally {
-            sessionFactory.close();
             session.close();
+            sessionFactory.close();
         }
         return file;
     }
@@ -59,8 +59,8 @@ public class FileRepo {
             session.delete(fileEntity);
             session.getTransaction().commit();
         } finally {
-            sessionFactory.close();
             session.close();
+            sessionFactory.close();
         }
     }
 
@@ -76,8 +76,8 @@ public class FileRepo {
             file.setFilePath(fileEntity.getFilePath());
             session.getTransaction().commit();
         } finally {
-            sessionFactory.close();
             session.close();
+            sessionFactory.close();
         }
         return file;
     }
@@ -97,8 +97,8 @@ public class FileRepo {
                 files.add(file);
             }
         } finally {
-            sessionFactory.close();
             session.close();
+            sessionFactory.close();
         }
         return files;
     }
